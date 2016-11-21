@@ -1,0 +1,8 @@
+{
+  "description": "Track 7.25 hours of work",
+  "name": "Call It A Day",
+  "uuid": "call-it-a-day@gnome-shell-extensions.spenap.github.com",
+  "shell-version": [
+    "3.18.5"
+  ]
+}
