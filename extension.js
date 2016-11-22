@@ -43,7 +43,7 @@ function init() {
                           x_fill: true,
                           y_fill: false,
                           track_hover: true });
-    let icon = new St.Icon({ icon_name: 'system-run-symbolic',
+    let icon = new St.Icon({ icon_name: 'preferences-system-time-symbolic',
                              style_class: 'system-status-icon' });
 
     button.set_child(icon);
