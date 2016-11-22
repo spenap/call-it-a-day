@@ -45,16 +45,17 @@ function init() {
                           track_hover: true });
     let icon = new St.Icon({ icon_name: 'system-run-symbolic',
                              style_class: 'system-status-icon' });
-    timeKeeper = new TK.TimeKeeper();
 
     button.set_child(icon);
     button.connect('button-press-event', _showHello);
 }
 
 function enable() {
+    timeKeeper = new TK.TimeKeeper(TK.WORK_DAY);
     Main.panel._rightBox.insert_child_at_index(button, 0);
 }
 
 function disable() {
     Main.panel._rightBox.remove_child(button);
+    timeKeeper = null;
 }

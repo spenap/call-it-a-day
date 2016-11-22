@@ -4,6 +4,7 @@ const GLib = imports.gi.GLib;
 const Lang = imports.lang;
 
 const WORK_DAY = 7.25 * 60 * 60 * 1000;
+const TEST_TIME = 3 * 1000;
 
 const ScreenSaverInterface = '<node> \
     <interface name="org.gnome.ScreenSaver">\
@@ -28,14 +29,14 @@ const ScreenSaverProxy = Gio.DBusProxy.makeProxyWrapper(ScreenSaverInterface);
 
 const TimeKeeper = new Lang.Class({
     Name: 'TimeKeeper',
-    _init: function() {
+    _init: function(targetTime) {
         log("Ctor");
         this._mainLoop = null;
         this._alarmId = GLib.timeout_add(GLib.PRIORITY_DEFAULT,
-                                         WORK_DAY,
+                                         targetTime,
                                          Lang.bind(this, this._timeout_cb));
         this._initialTime = new Date();
-        this._targetTime = new Date(this._initialTime.getTime() + WORK_DAY);
+        this._targetTime = new Date(this._initialTime.getTime() + targetTime);
         log("The alarm is set for " + this._formatTime(this._targetTime));
         this._init_dbus();
     },

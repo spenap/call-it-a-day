@@ -3,5 +3,5 @@
 imports.searchPath.unshift(".");
 const TK = imports.timekeeper;
 
-let tk = new TK.TimeKeeper();
+let tk = new TK.TimeKeeper(TK.TEST_TIME);
 tk.run();
