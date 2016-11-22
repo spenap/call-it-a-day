@@ -28,7 +28,7 @@ const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Lang = imports.lang;
 
-const WORK_DAY = 7.25 * 60 * 60 * 1000;
+const WORK_DAY = 8.25 * 60 * 60 * 1000;
 const TEST_TIME = 3 * 1000;
 
 const ScreenSaverInterface = '<node> \
