@@ -29,18 +29,21 @@ const ScreenSaverProxy = Gio.DBusProxy.makeProxyWrapper(ScreenSaverInterface);
 
 const TimeKeeper = new Lang.Class({
     Name: 'TimeKeeper',
-    _init: function(targetTime) {
+    _init: function(targetTime, cb) {
         log("Ctor");
         this._mainLoop = null;
+	if (!cb) {
+	    cb = Lang.bind(this, this._default_timeout_cb);
+	}
         this._alarmId = GLib.timeout_add(GLib.PRIORITY_DEFAULT,
                                          targetTime,
-                                         Lang.bind(this, this._timeout_cb));
+                                         cb);
         this._initialTime = new Date();
         this._targetTime = new Date(this._initialTime.getTime() + targetTime);
         log("The alarm is set for " + this._formatTime(this._targetTime));
         this._init_dbus();
     },
-    _timeout_cb: function() {
+    _default_timeout_cb: function() {
         log("Timeout callback");
     },
     _activechanged_cb: function(proxy) {

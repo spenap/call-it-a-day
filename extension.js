@@ -14,8 +14,11 @@ function _hideHello() {
     label = null;
 }
 
-function _showHello() {
+function _showHello(expired) {
     let labelText = "You can call it a day at " + timeKeeper.getAlarmTime();
+    if (expired) {
+	labelText = "You can call it a day now!";
+    }
 
     if (!label) {
         label = new St.Label({ style_class: 'helloworld-label', text: labelText });
@@ -51,7 +54,7 @@ function init() {
 }
 
 function enable() {
-    timeKeeper = new TK.TimeKeeper(TK.WORK_DAY);
+    timeKeeper = new TK.TimeKeeper(TK.WORK_DAY, function() { _showHello(true); });
     Main.panel._rightBox.insert_child_at_index(button, 0);
 }
 
